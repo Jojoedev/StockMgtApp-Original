@@ -42,7 +42,9 @@ namespace StockMgtApp
             .AddRoles<IdentityRole>() 
             .AddEntityFrameworkStores<DatabaseContext>();
             services.AddAuthorization();
+            
             //This is used to prevent anonymous access to all pages except the use is authenticated.
+            //services.AddRazorPages(options => { options.Conventions.AuthorizePage("/"); });
             services.AddRazorPages(options => { options.Conventions.AuthorizeFolder("/"); });
         }
 
