@@ -1,0 +1,48 @@
+﻿@page
+@model StockMgtApp.Pages.Logic.IssueModel
+@{
+}
+
+<form method="post">
+    <table class="table">
+        <thead class="col-md-4">
+        </thead>
+        <tbody>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.Id">Id</label></td>
+                <td> <input asp-for="@Model.StockItem.Id" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.StockName">Stock Name</label></td>
+                <td> <input asp-for="@Model.StockItem.StockName" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.Quantity">Quantity</label></td>
+                <td> <input asp-for="@Model.StockItem.Quantity" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.Unitprice">Unit Price</label></td>
+                <td> <input asp-for="@Model.StockItem.Unitprice" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.Total">Value (N)</label></td>
+                <td> <input asp-for="@Model.StockItem.Total" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.IssueOut">Current Issue</label></td>
+                <td> <input asp-for="@Model.StockItem.IssueOut" /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.StockBalance">StockBalance</label></td>
+                <td> <input asp-for="@Model.StockItem.StockBalance" readonly/> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.StockItem.NewTotal">Total Issue</label></td>
+                <td> <input asp-for="@Model.StockItem.NewTotal" readonly /> </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <input type="submit" name="name" value="Issue" class="btn btn-primary" /> &nbsp; <a href="/Logic/List" class="btn btn-primary">Back</a>
+</form>

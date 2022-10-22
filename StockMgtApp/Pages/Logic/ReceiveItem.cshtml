@@ -1,0 +1,40 @@
+﻿@page
+@model StockMgtApp.Pages.Logic.CreateModel
+
+
+<div class="card">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="card-body col-md-12">
+            
+            <div class="row">
+
+                <label asp-for="@Model.stockItem.StockName"></label>
+                <input asp-for="@Model.stockItem.StockName" class="form-control" />
+                <span class="text-danger" asp-validation-for="@Model.stockItem.StockName"></span>
+            </div>
+            <div class="row">
+                @*<div class="col-md-8"></div>*@
+                <label asp-for="@Model.stockItem.Quantity"></label>
+                <input asp-for="@Model.stockItem.Quantity" class="form-control" />
+                <span class="text-danger" asp-validation-for="@Model.stockItem.Quantity"></span>
+            </div>
+            
+            <div class="row">
+
+                <label asp-for="@Model.stockItem.Unitprice"> Unit Price</label>
+                <input asp-for="@Model.stockItem.Unitprice" class="form-control" />
+                <span class="text-danger" asp-validation-for="@Model.stockItem.Unitprice"></span>
+
+            </div>
+            <!--<div class="row">-->
+            @*<label asp-for="@Model.stockItem.Total"></label> <br />
+        <input asp-for="@Model.stockItem.Total"  />*@
+
+            <!--</div>-->
+        </div>
+            <div>
+            <input type="submit" name="name" value="Submit" class="btn btn-primary btn-block" />
+        </div>
+    </form>
+</div>

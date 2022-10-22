@@ -1,0 +1,34 @@
+﻿@page
+@model StockMgtApp.Pages.Logic.EditModel
+@{
+}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Id</th>
+                <th> Stock Item</th>
+                <th> Quantity</th>
+                <th> Unit Price</th>
+                <th> Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> @Model.stockItem.Id</td>
+                <td> @Model.stockItem.StockName</td>
+                <td> @Model.stockItem.Quantity</td>
+                <td> @Model.stockItem.Unitprice</td>
+                <td> @Model.stockItem.Total</td>
+                <td> <a href="/Logic/List" class="btn btn-primary">Back</a></td>
+            </tr>
+           
+            
+        </tbody>
+
+
+    </table>
+</div>
+
+//This should should hsitory of receipts and issues with dates.
