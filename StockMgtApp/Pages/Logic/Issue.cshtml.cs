@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StockMgtApp.Models;
+using System.IO;
 
 namespace StockMgtApp.Pages.Logic
 {
+    [Authorize]
     public class IssueModel : PageModel
     {
         private readonly DatabaseContext _Context;
@@ -26,7 +29,9 @@ namespace StockMgtApp.Pages.Logic
                 StockItem = (from n in _Context.STOCKMGT
                              where n.Id == id
                              select n).FirstOrDefault();
-                StockItem.IssueOut = 0;
+                              
+                                //Clears Issue cell each time a new issue request is made.
+                               StockItem.IssueOut = 0;
                
             }
             // return RedirectToAction("/Logic/List");
@@ -35,8 +40,13 @@ namespace StockMgtApp.Pages.Logic
 
         public ActionResult OnPost(StockItem stockItem)
         {
-            CheckReOrderLevel();
-            ConfirmQty();
+               
+            Logger.Log(stockItem); //Creating .csv file on every issue.
+           
+            CheckReOrderLevel(); //Validate availability of the requested stock
+            
+            ConfirmQty(); //Confirm available quantity
+
             if (ModelState.IsValid)
             {
                 
@@ -49,7 +59,6 @@ namespace StockMgtApp.Pages.Logic
 
                 var QtyIssueOut = stockItem.IssueOut;
                 var Purchaseqty = stockItem.Quantity;
-
                 var IssOutQty = Purchaseqty - QtyIssueOut;
 
                 //stockItem.StockBalance += IssOutQty;
@@ -63,39 +72,29 @@ namespace StockMgtApp.Pages.Logic
                 {
                     stockItem.StockBalance = Purchaseqty - stockItem.NewTotal;
                 }
-
                 _Context.SaveChanges();
                 return RedirectToPage("/Logic/List");
-                
             }
             return Page();
         }
 
-     
-        
         public void ConfirmQty()
         {
-                  
-                var StockBal = StockItem.Quantity - StockItem.NewTotal;
-                if (StockItem.Quantity < StockItem.IssueOut)
-                {
-                    throw new Exception("Available stock cannot statisfy request ");
 
-                }
-                if (StockItem.IssueOut > StockBal)
-                {
-                    throw new Exception("Available stock is insufficient to meet request");
-                }
             
-                
-    
+            
+                var StockBal = StockItem.Quantity - StockItem.NewTotal;
+                if (StockItem.Quantity < StockItem.IssueOut || StockItem.IssueOut > StockBal)
+                {
+                    throw new Exception("Error, Issue quantity cannot be more than avaliable quantity");
+                }    
+            
         }
 
         public string CheckReOrderLevel()
-
         {
+            
             var msg = ("The stock quantity has reached Re-Order Level");
-
             var ReOderLevel = 3;
             var StockBal = StockItem.Quantity - StockItem.NewTotal;
             if(StockBal <= ReOderLevel)
@@ -105,5 +104,6 @@ namespace StockMgtApp.Pages.Logic
             return null;
         }
             
+        
     }
 }

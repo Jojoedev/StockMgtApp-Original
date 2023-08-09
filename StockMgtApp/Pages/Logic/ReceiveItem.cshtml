@@ -6,7 +6,15 @@
     <form method="post">
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="card-body col-md-12">
-            
+            <!--<div class="row">-->
+                @*@{ 
+                    DateTime D = new DateTime();
+                }*@
+               @* <label asp-for="@Model.stockItem.DateOfReceipt"></label>
+                <input asp-for="@Model.stockItem.DateOfReceipt" class="form-control" />*@
+                
+            <!--</div>-->
+
             <div class="row">
 
                 <label asp-for="@Model.stockItem.StockName"></label>
@@ -19,7 +27,7 @@
                 <input asp-for="@Model.stockItem.Quantity" class="form-control" />
                 <span class="text-danger" asp-validation-for="@Model.stockItem.Quantity"></span>
             </div>
-            
+
             <div class="row">
 
                 <label asp-for="@Model.stockItem.Unitprice"> Unit Price</label>

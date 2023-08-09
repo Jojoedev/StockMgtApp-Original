@@ -24,7 +24,6 @@ namespace StockMgtApp.Pages.Logic
                 StockItem = (from n in _Context.STOCKMGT
                                  where n.Id == id
                                  select n).FirstOrDefault();
-              var D = StockItem.NewTotal;
                 
             }
             return Page();
@@ -34,23 +33,39 @@ namespace StockMgtApp.Pages.Logic
 
         public ActionResult OnPost(StockItem StockItem)
         {
-            
+           
+            StockItem.Total = StockItem.Quantity * StockItem.Unitprice;
 
             if (ModelState.IsValid)
             {
                    
-                _Context.Entry(StockItem).Property(X => X.StockName).IsModified = true;
+                _Context.Entry(StockItem).Property(X => X.StockName).IsModified = false;
                 _Context.Entry(StockItem).Property(X => X.Quantity).IsModified = true;
-                _Context.Entry(StockItem).Property(X => X.Unitprice).IsModified = true;
+                _Context.Entry(StockItem).Property(X => X.Unitprice).IsModified = false;
                   _Context.Entry(StockItem).Property(X => X.NewTotal).IsModified = false;
-                var b = StockItem.NewTotal;
 
+
+                CheckIfEditQtyIsLessThanTotalIssue();
+                
                 StockItem.StockBalance = StockItem.Quantity - StockItem.NewTotal;
                 StockItem.Total = StockItem.Quantity * StockItem.Unitprice;
                 
                 _Context.SaveChanges();
             }
             return RedirectToPage("/Logic/List");
+        }
+
+        public void CheckIfEditQtyIsLessThanTotalIssue()
+        {
+            if(StockItem.NewTotal > StockItem.Quantity)
+            {
+                
+                throw new Exception("New Quantity cannot be lower than total stock issued");
+            }
+            else
+            {
+                StockItem.StockBalance = StockItem.Quantity - StockItem.NewTotal;
+            }
         }
     }
 }

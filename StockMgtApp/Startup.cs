@@ -28,7 +28,9 @@ namespace StockMgtApp
         {
             
             services.AddRazorPages();
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DatabaseContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<Employee>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
@@ -43,7 +45,7 @@ namespace StockMgtApp
             .AddEntityFrameworkStores<DatabaseContext>();
             services.AddAuthorization();
             
-            //This is used to prevent anonymous access to all pages except the use is authenticated.
+            //This is used to prevent anonymous access to all pages except the user is authenticated.
             //services.AddRazorPages(options => { options.Conventions.AuthorizePage("/"); });
             services.AddRazorPages(options => { options.Conventions.AuthorizeFolder("/"); });
         }

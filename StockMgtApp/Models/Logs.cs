@@ -8,7 +8,10 @@ namespace StockMgtApp.Models
 {
     public class Logs
     {
-        public string MyLog { get; set; }
+        public StockItem MyLog(StockItem stockItem, string msg)
+        {
+            return stockItem;
+        }
 
     }
 }

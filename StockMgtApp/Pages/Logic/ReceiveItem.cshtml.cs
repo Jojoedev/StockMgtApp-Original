@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using StockMgtApp.Models;
 
 namespace StockMgtApp.Pages.Logic
@@ -11,22 +12,24 @@ namespace StockMgtApp.Pages.Logic
     public class CreateModel : PageModel
     {
        public readonly DatabaseContext _Context;
+        private readonly ILogger _logger;
         [BindProperty]
         public StockItem stockItem { get; set; }
 
-        public CreateModel(DatabaseContext context)
+        public CreateModel(DatabaseContext context, ILogger<CreateModel> logger)
         {
             _Context = context;
+            _logger = logger;
             
         }
-        public void OnGet(int id)
+        /*public void OnGet(int id)
         {
 
-        }
+        }*/
         
         public ActionResult OnPost(StockItem stockItem)
         {
-
+            //Logger.Log(stockItem);
             /*var emp = StockItem;
             if (!ModelState.IsValid)
             {
@@ -39,8 +42,8 @@ namespace StockMgtApp.Pages.Logic
             return RedirectToPage("/Logic/List");*/
 
             /*var NewId = new Random().Next();*/
-                        
-            
+
+
             if (ModelState.IsValid)
             {
              var total = stockItem.Quantity * stockItem.Unitprice;
@@ -49,6 +52,7 @@ namespace StockMgtApp.Pages.Logic
                 _Context.Add(stockItem);
                 _Context.SaveChanges();
                 return RedirectToPage("/Logic/List");
+                
             }
 
             return Page();

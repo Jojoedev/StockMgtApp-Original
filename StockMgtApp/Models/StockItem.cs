@@ -11,11 +11,9 @@ namespace StockMgtApp.Models
     {
 
         [Key]
-       
         public int Id { get;  set; }
 
-        /*[Required(ErrorMessage = "Enter Date")]
-        [Display(Name = "Date")]
+       /* [Display(Name = "Date")]
         public DateTime DateOfReceipt { get; set; }*/
 
         [Required(ErrorMessage ="Enter Product Name")]

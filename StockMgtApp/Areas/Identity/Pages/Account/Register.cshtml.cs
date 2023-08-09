@@ -23,18 +23,21 @@ namespace StockMgtApp.Areas.Identity.Pages.Account
         private readonly SignInManager<Employee> _signInManager;
         private readonly UserManager<Employee> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-       
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<Employee> userManager,
             SignInManager<Employee> signInManager,
-            ILogger<RegisterModel> logger)
+            ILogger<RegisterModel> logger
+           
+            )
           
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-           /* _emailSender = emailSender;*/
+            /*_roleManager = roleManager;*/
+            /* _emailSender = emailSender;*/
         }
 
         [BindProperty]

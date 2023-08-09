@@ -19,10 +19,10 @@ namespace StockMgtApp.Pages.Logic
         {
             if(id != null)
             {
-                var d = (from n in _Context.STOCKMGT
+                var deleteItem = (from n in _Context.STOCKMGT
                          where n.Id == id
                          select n).FirstOrDefault();
-                _Context.Remove(d);
+                _Context.Remove(deleteItem);
                 _Context.SaveChanges();
               
             }

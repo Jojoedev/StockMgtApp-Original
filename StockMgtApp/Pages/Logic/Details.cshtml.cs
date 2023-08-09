@@ -26,7 +26,7 @@ namespace StockMgtApp.Pages.Logic
                             select n).FirstOrDefault();
                 stockItem = stockItem;
             }
-            
+         
         }
     }
 }

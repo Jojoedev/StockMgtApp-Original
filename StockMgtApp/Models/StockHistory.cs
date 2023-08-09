@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace StockMgtApp.Models
 {
-    public class StockHistory
+    public class StockHistory : StockItem
     {
-        [Key]
+        /*[Key]
         public int StockId { get; set; }
         public string Name { get; set; }
         public decimal StockQty { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalIssue { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; }*/
 
     }
 }
