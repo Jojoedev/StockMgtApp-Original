@@ -1,0 +1,49 @@
+﻿@page
+@model StockMgtApp.Pages.Logic.IssueModel
+@{
+}
+<h5>Check the Re-order level</h5>
+<form method="post">
+    <table class="table">
+        <thead class="col-md-4">
+        </thead>
+        <tbody>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.Id">Id</label></td>
+                <td> <input asp-for="@Model.stockItem.Id" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.Category.Name"></label></td>
+                
+                <td><input asp-for="@Model.stockItem.Category.Name" /></td> 
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.Quantity">Quantity</label></td>
+                <td> <input asp-for="@Model.stockItem.Quantity" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.Unitprice">Unit Price</label></td>
+                <td> <input asp-for="@Model.stockItem.Unitprice" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.Total">Value (N)</label></td>
+                <td> <input asp-for="@Model.stockItem.Total" readonly /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.IssueOut">Current Issue</label></td>
+                <td> <input asp-for="@Model.stockItem.IssueOut" class="btn-outline-primary" autocomplete="off" /> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.StockBalance">StockBalance</label></td>
+                <td> <input asp-for="@Model.stockItem.StockBalance" readonly/> </td>
+            </tr>
+            <tr>
+                <td> <label asp-for="@Model.stockItem.NewTotal">Total Issue</label></td>
+                <td> <input asp-for="@Model.stockItem.NewTotal" readonly /> </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <input type="submit" name="name" value="Issue" class="btn btn-primary" /> &nbsp; <a href="/Logic/List" class="btn btn-primary">Back</a>
+</form>

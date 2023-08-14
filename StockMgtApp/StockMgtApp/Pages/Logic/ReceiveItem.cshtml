@@ -1,0 +1,48 @@
+﻿@page
+@model StockMgtApp.Pages.Logic.CreateModel
+
+
+<div class="card">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="card-body col-md-12">
+
+            <div class="form-group">
+
+                <label asp-for="@Model.stockItem.ItemCategoryId"></label>
+
+                <select asp-for="@Model.stockItem.ItemCategoryId" class="form-control" asp-items="Model.Items">
+                    <option>Select Item</option>
+                </select>
+                <span asp-validation-for="@Model.stockItem.ItemCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+            <label asp-for="@Model.stockItem.Description"></label>
+            <input asp-for="@Model.stockItem.Description" class="form-control" autocomplete="off" />
+            <span class="text-danger" asp-validation-for="@Model.stockItem.Description"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="@Model.stockItem.Quantity"></label>
+            <input asp-for="@Model.stockItem.Quantity" class="form-control" autocomplete="off" />
+            <span class="text-danger" asp-validation-for="@Model.stockItem.Quantity"></span>
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="@Model.stockItem.Unitprice"> Unit Price</label>
+            <input asp-for="@Model.stockItem.Unitprice" autocomplete="off" class="form-control" />
+            <span class="text-danger" asp-validation-for="@Model.stockItem.Unitprice"></span>
+
+        </div>
+
+</div>
+        <div>
+
+            <input type="submit" name="name" value="Submit" class="btn btn-primary" /> &nbsp;
+            <a href="./List" class="btn btn-dark"><i class="fa-solid fa-backward"></i></a>
+        </div>
+    </form>
+</div>

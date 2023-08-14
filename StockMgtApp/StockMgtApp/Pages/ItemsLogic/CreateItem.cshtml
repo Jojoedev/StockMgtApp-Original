@@ -1,0 +1,24 @@
+﻿@page
+@model StockMgtApp.Pages.ItemsLogic.CreateItemModel
+@{
+}
+
+<div class="card">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="card-body col-md-12">
+            <div class="form-group">
+                <label asp-for="@Model.itemCategory.Name"></label>
+                <input asp-for="@Model.itemCategory.Name" class="form-control" autocomplete="off" />
+                <span class="text-danger" asp-validation-for="@Model.itemCategory.Name"></span>
+            </div>
+
+            
+        </div>
+        
+            <div>
+                <input type="submit" name="name" value="Submit" class="btn btn-primary" /> &nbsp;
+                <a href="./List" class="btn btn-dark"><i class="fa-solid fa-backward"></i></a>
+            </div>
+</form>
+</div>
